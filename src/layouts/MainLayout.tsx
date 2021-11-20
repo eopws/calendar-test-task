@@ -5,10 +5,11 @@ import { useActions } from '../hooks/useActions'
 
 const MainLayout: React.FC = ({children}) => {
     const {isAuth} = useTypedSelector(state => state.auth);
-    const {setIsAuth} = useActions();
+    const {setIsAuth, setUser} = useActions();
 
     function onLogout() {
         setIsAuth(false);
+        setUser(null);
     }
 
     return (

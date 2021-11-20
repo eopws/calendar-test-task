@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, DatePicker, Button, Select, Modal } from 'antd';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 interface AddEventModalProps {
     isVisible: boolean;
@@ -7,6 +8,8 @@ interface AddEventModalProps {
 }
 
 const AddEventModal: React.FC<AddEventModalProps> = ({isVisible, handleOk}) => {
+    const {users} = useTypedSelector(state => state.user);
+
     return (
         <Modal title="Basic Modal" visible={isVisible} footer={[]}>
             <Form
@@ -39,8 +42,14 @@ const AddEventModal: React.FC<AddEventModalProps> = ({isVisible, handleOk}) => {
                     rules={[{ required: true, message: 'Please input guest!' }]}
                 >
                     <Select>
-                        <Select.Option value="jack">Jack</Select.Option>
-                        <Select.Option value="lucy">Lucy</Select.Option>
+                        {users.map(({username}) =>
+                            <Select.Option
+                                key={username}
+                                value={username}
+                            >
+                                {username}
+                            </Select.Option>  
+                        )}
                     </Select>
                 </Form.Item>
 

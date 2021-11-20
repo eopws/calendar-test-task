@@ -1,13 +1,18 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { useActions } from '../hooks/useActions';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const LoginForm: React.FC = () => {
-    const {setIsAuth} = useActions();
+    const {setIsAuth, setUser} = useActions();
+    const {users} = useTypedSelector(state => state.user);
 
     const onFinish = (values: any) => {
-        if (values.username === 'xareyli' && values.password === '123456') {
+        const user = users.find(item => item.username === values.username && item.password === values.password)
+
+        if (user) {
             setIsAuth(true);
+            setUser(user);
         }
     };
 

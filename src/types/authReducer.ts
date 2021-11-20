@@ -17,7 +17,7 @@ export interface SetIsAuthAction {
 
 export interface SetUserAction {
     type: AuthActionTypes.SET_USER;
-    payload: IUser;
+    payload: IUser | null;
 }
 
 export type AuthAction =

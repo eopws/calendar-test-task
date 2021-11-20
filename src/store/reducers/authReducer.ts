@@ -16,6 +16,12 @@ export function authReducer(state = initialState, action: AuthAction): IState {
 
             return {...state, isAuth: action.payload};
         case AuthActionTypes.SET_USER:
+            if (action.payload !== null) {
+                localStorage.setItem('user', JSON.stringify(action.payload));
+            } else {
+                localStorage.removeItem('user');
+            }
+
             return {...state, user: action.payload};
         default:
             return state
