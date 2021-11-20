@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import unauthRoutes from '../routes/unauthRoutes';
+import { authRoutes, unauthRoutes } from '../routes/';
 import { IRoute } from '../types/Router';
 
 const AppRouter: React.FC = () => {
@@ -11,6 +11,8 @@ const AppRouter: React.FC = () => {
 
     if (!isAuth) {
         routes = unauthRoutes;
+    } else {
+        routes = authRoutes;
     }
 
     return (
