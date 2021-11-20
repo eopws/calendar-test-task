@@ -1,9 +1,14 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useActions } from '../hooks/useActions';
 
 const LoginForm: React.FC = () => {
+    const {setIsAuth} = useActions();
+
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+        if (values.username === 'xareyli' && values.password === '123456') {
+            setIsAuth(true);
+        }
     };
 
     return (

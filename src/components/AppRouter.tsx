@@ -1,13 +1,23 @@
 import React from 'react'
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import unauthRoutes from '../routes/unauthRoutes';
+import { IRoute } from '../types/Router';
 
 const AppRouter: React.FC = () => {
+    const {isAuth} = useTypedSelector(state => state.auth);
+
+    let routes: IRoute[] = [];
+
+    if (!isAuth) {
+        routes = unauthRoutes;
+    }
+
     return (
         <BrowserRouter>
             <Routes>
                 {
-                    unauthRoutes.map(route =>
+                    routes.map(route =>
                         <Route
                             path={route.path}
                             element={<route.component />}
