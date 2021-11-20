@@ -2,13 +2,13 @@ import React from 'react'
 import { Calendar as CalendarElement, Badge } from 'antd';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import styles from '../styles/Calendar.module.scss';
+import AddEventForm from './AddEventForm';
 
 const Calendar: React.FC = () => {
     const {events} = useTypedSelector(state => state.event);
 
     function dateCellRender(value: any) {
-        const currentDate = `${value.year()}-${value.month()}-${value.date()}`
-        const eventsForCell = events.filter(item => item.date === currentDate);
+        const eventsForCell = events.filter(item => !item.date.isAfter(value, 'day') && !item.date.isBefore(value, 'day'));
 
         return (
             <ul className={styles.events}>
@@ -26,6 +26,8 @@ const Calendar: React.FC = () => {
             <CalendarElement
                 dateCellRender={dateCellRender}
             />
+
+            <AddEventForm />
         </div>
     )
 }
