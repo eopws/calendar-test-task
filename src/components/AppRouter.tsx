@@ -21,6 +21,7 @@ const AppRouter: React.FC = () => {
                 {
                     routes.map(route =>
                         <Route
+                            key={route.path}
                             path={route.path}
                             element={<route.component />}
                         />
