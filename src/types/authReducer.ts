@@ -1,9 +1,13 @@
+import { IUser } from "./userReducer";
+
 export interface IState {
     isAuth: boolean;
+    user: IUser | null;
 }
 
 export enum AuthActionTypes {
-    SET_IS_AUTH="SET_IS_AUTH"
+    SET_IS_AUTH="SET_IS_AUTH",
+    SET_USER="SET_USER"
 }
 
 export interface SetIsAuthAction {
@@ -11,6 +15,11 @@ export interface SetIsAuthAction {
     payload: boolean;
 }
 
+export interface SetUserAction {
+    type: AuthActionTypes.SET_USER;
+    payload: IUser;
+}
+
 export type AuthAction =
     SetIsAuthAction
- // | Other Actions
+    | SetUserAction

@@ -2,6 +2,7 @@ import { AuthAction, AuthActionTypes, IState } from "../../types/authReducer";
 
 const initialState: IState = {
     isAuth: false,
+    user: null
 };
 
 export function authReducer(state = initialState, action: AuthAction): IState {
@@ -14,6 +15,8 @@ export function authReducer(state = initialState, action: AuthAction): IState {
             }
 
             return {...state, isAuth: action.payload};
+        case AuthActionTypes.SET_USER:
+            return {...state, user: action.payload};
         default:
             return state
     }

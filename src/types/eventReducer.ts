@@ -1,10 +1,11 @@
 import { Moment } from "moment";
+import { IUser } from "./userReducer";
 
 export interface IEvent {
     type: "success" | "processing" | "error" | "default" | "warning" | undefined;
     content: string;
     date: Moment;
-    user: string; // @TODO: change to IUser
+    user: IUser;
 }
 
 export interface IState {
